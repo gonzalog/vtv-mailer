@@ -1,9 +1,7 @@
 class NotificationMailer < ApplicationMailer
   def expiration_email(client_data, from_email, from_password)
     client_email = client_data[:email]
-    from_email = from_email
-    from_password = from_password
-    
+
     @expiration_date = client_data[:expiration_date]
     @certificate_id = client_data[:certificate_id]
     @domain = client_data[:domain]
@@ -17,6 +15,7 @@ class NotificationMailer < ApplicationMailer
     };
 
     mail(
+      from: from_email,
       to: client_email,
       subject: "Vencimiento revisión técnica dominio #{@domain}")
   end
